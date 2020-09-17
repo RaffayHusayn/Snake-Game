@@ -61,28 +61,39 @@ public class GamePanel  extends JPanel implements ActionListener{
     }
 
     public void draw(Graphics g){
-        for(int i=0; i<SCREEN_HEIGHT/UNIT_SIZE; i++){
-            g.drawLine(i*UNIT_SIZE, 0 , i*UNIT_SIZE, SCREEN_HEIGHT);
-            g.drawLine(0, i*UNIT_SIZE, SCREEN_WIDTH, i*UNIT_SIZE);
-        }
-        g.setColor(Color.yellow);
-        g.fillRect(appleX,appleY, UNIT_SIZE, UNIT_SIZE);
 
-        //drawing snake
+        //When Game is running
+        if(running){
 
-        for(int i=0 ; i<bodyParts; i++){
-            if(i==0){
-                //head of the snake
-                g.setColor(new Color(38, 105, 18));
-                g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+            for(int i=0; i<SCREEN_HEIGHT/UNIT_SIZE; i++){
+                g.drawLine(i*UNIT_SIZE, 0 , i*UNIT_SIZE, SCREEN_HEIGHT);
+                g.drawLine(0, i*UNIT_SIZE, SCREEN_WIDTH, i*UNIT_SIZE);
             }
-            else{
-                //body of the snake
-                g.setColor(new Color(54, 153, 22));
-                g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+            g.setColor(Color.yellow);
+            g.fillRect(appleX,appleY, UNIT_SIZE, UNIT_SIZE);
 
+            //drawing snake
+
+            for(int i=0 ; i<bodyParts; i++){
+                if(i==0){
+                    //head of the snake
+                    g.setColor(new Color(38, 105, 18));
+                    g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+                }
+                else{
+                    //body of the snake
+                    g.setColor(new Color(54, 153, 22));
+                    g.fillRect(x[i], y[i], UNIT_SIZE, UNIT_SIZE);
+
+                }
             }
+
         }
+        else{
+
+            gameOver(g);
+        }
+
 
     }
 
@@ -154,7 +165,11 @@ public class GamePanel  extends JPanel implements ActionListener{
     }
 
     public void gameOver(Graphics g){
-
+            //Gameover Text
+        g.setColor(Color.RED);
+        g.setFont(new Font("Helvetica", Font.BOLD, 100));
+        FontMetrics metrics = getFontMetrics(g.getFont());
+        g.drawString("Game Over", (SCREEN_WIDTH - metrics.stringWidth("Game Over"))/2, SCREEN_HEIGHT/2);
 
     }
 
