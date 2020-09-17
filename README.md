@@ -1,3 +1,3 @@
 # Snake-Game
 
-![](Game%20Screenshot.png)
+![](Images/GameScreenshot.png)
